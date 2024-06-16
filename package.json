@@ -1,6 +1,7 @@
 {
   "name": "sre-linear",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +10,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "mathjax": "^4.0.0-beta.6"
+    "linkedom": "^0.18.3",
+    "mathjax-full": "^4.0.0-beta.6",
+    "speech-rule-engine": "^4.1.0-beta.10"
   }
 }
