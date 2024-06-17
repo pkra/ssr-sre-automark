@@ -272,6 +272,8 @@ ssmlChildNodes.forEach(ssmlChild => {
 if (s.length > 0) {
     const dumpee = currentTarget || lastValidTarget;
     dumpee.setAttribute('aria-label', dumpee.getAttribute('aria-label')||'' + ' ' + s.join(' ')) //add remaining to last current Target?
+    dumpee.setAttribute('tabindex', '0'); // TODO maybe do this elsewhere
+
 }
 
 const mmlNode = mmlDom.querySelector('math');
