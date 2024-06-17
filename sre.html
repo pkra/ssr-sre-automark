@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :focus {
+            outline: 30px solid blue;
+        }
+        #subtitle {
+            height: 3rem;
+        }
+    </style>
+    <script>
+        window.addEventListener("focusin", (event) => {
+            document.querySelector('#subtitle').innerHTML = document.activeElement.getAttribute('aria-label')
+        });
+
+    </script>
+</head>
+<body>
+
+<div id="subtitle"></div>
+<!-- DUMP output here -->
+</body>
+</html>
