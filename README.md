@@ -14,3 +14,15 @@ which is out of date - `-e` found via `$ npx sre -h`
 
 walkable speech is "flat" SSML with mark elements @name pointing to enrich MML nodes
 
+## Strategy 1:
+
+- go through enriched MML leaves
+  - `$0.querySelectorAll('[data-semantic-id]:not([data-semantic-children]')` (some nodes have no -id AND no -children, e.g. mrows)
+- attach all ssml text up until that node
+
+MEEP
+DOESN'T WORK. 
+E.g., mitternachtsformel - (in "-b") is leaf aber kein mark zeigt darauf.
+
+[we could start skipping until we find a leaf with a matching ID but let's try th reverse first]
+
