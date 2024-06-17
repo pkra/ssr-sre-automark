@@ -26,3 +26,18 @@ E.g., mitternachtsformel - (in "-b") is leaf aber kein mark zeigt darauf.
 
 [we could start skipping until we find a leaf with a matching ID but let's try th reverse first]
 
+## Strategy 2
+
+- loop through SSML prosody element children (-- prosody only has leaf children (XML or text)?)
+
+- let s = ''
+- if current element is mark
+  - if name ID matches a leaf
+    - s += mark.sibling.text (either plain text or say-as -- correct?)
+    - add aria-label=s to leaf
+    - reset s=''
+    - continue with element after sibling
+  - else 
+    - s += element.text 
+    - continue with next element
+
