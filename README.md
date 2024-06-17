@@ -41,3 +41,8 @@ E.g., mitternachtsformel - (in "-b") is leaf aber kein mark zeigt darauf.
     - s += element.text 
     - continue with next element
 
+Problems: 
+- ssml might not start (nor end) with mark
+- might have END marks
+- mark targets might need some text from before and some from after
+
