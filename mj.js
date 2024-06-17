@@ -9,37 +9,46 @@ import { SerializedMmlVisitor } from 'mathjax-full/mjs/core/MmlTree/SerializedMm
 
 const MmlVisitor = SerializedMmlVisitor;
 
+import 'mathjax-full/js/input/tex/base/BaseConfiguration.js';
+import 'mathjax-full/js/input/tex/ams/AmsConfiguration.js';
+import 'mathjax-full/js/input/tex/amscd/AmsCdConfiguration.js';
+import 'mathjax-full/js/input/tex/bbox/BboxConfiguration.js';
+import 'mathjax-full/js/input/tex/boldsymbol/BoldsymbolConfiguration.js';
+import 'mathjax-full/js/input/tex/braket/BraketConfiguration.js';
+import 'mathjax-full/js/input/tex/cancel/CancelConfiguration.js';
+import 'mathjax-full/js/input/tex/color/ColorConfiguration.js';
+import 'mathjax-full/js/input/tex/configmacros/ConfigMacrosConfiguration.js';
+import 'mathjax-full/js/input/tex/enclose/EncloseConfiguration.js';
+import 'mathjax-full/js/input/tex/extpfeil/ExtpfeilConfiguration.js';
+import 'mathjax-full/js/input/tex/html/HtmlConfiguration.js';
+import 'mathjax-full/js/input/tex/tagformat/TagFormatConfiguration.js';
+import 'mathjax-full/js/input/tex/textmacros/TextMacrosConfiguration.js';
+import 'mathjax-full/js/input/tex/unicode/UnicodeConfiguration.js';
+import 'mathjax-full/js/input/tex/verb/VerbConfiguration.js';
+import 'mathjax-full/js/input/tex/mathtools/MathtoolsConfiguration.js';
+import 'mathjax-full/js/input/tex/cases/CasesConfiguration.js';
+import 'mathjax-full/js/input/tex/empheq/EmpheqConfiguration.js';
+import 'mathjax-full/js/input/tex/colortbl/ColortblConfiguration.js';
 const packageList = [
     'base',
-    'action',
     'ams',
     'amscd',
     'bbox',
     'boldsymbol',
     'braket',
-    // 'bussproofs',
     'cancel',
     'cases',
-    'centernot',
     'color',
     'colortbl',
     'empheq',
     'enclose',
     'extpfeil',
-    'gensymb',
     'html',
     'mathtools',
-    'mhchem',
-    'newcommand',
-    'noerrors',
-    'noundefined',
-    'upgreek',
     'unicode',
     'verb',
     'configmacros',
     'tagformat',
-    'texhtml',
-    'textcomp',
     'textmacros'
 ]
 
