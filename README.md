@@ -46,3 +46,7 @@ Problems:
 - ssml might not start (nor end) with mark
 - might have END marks
 - mark targets might need some text from before and some from after
+
+
+Other problems:
+- mathjax output might not have correct DOM order (over/under/base, tables)
