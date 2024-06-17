@@ -225,6 +225,9 @@ mml = `<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   </mtable>
 </math>`
 
+export const sreLinearizer = async (mml) => {
+
+
 await sre.engineReady();
 await sre.setupEngine({
     domain: 'mathspeak',
@@ -281,4 +284,6 @@ const cleanupAttributes = (node) => {
 };
 
 mmlNode.querySelectorAll('*').forEach(node => cleanupAttributes(node));
-console.log(mmlNode.outerHTML)
+console.log(mmlNode.outerHTML);
+return mmlNode;
+}
