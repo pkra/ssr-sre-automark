@@ -8,7 +8,7 @@ From https://github.com/Speech-Rule-Engine/speech-rule-engine?tab=readme-ov-file
 
 which is out of date - `-e` found via `$ npx sre -h`
 
-`$ npx sre -e -k ssml < input`  - "Walkable" speech
+`$ npx sre -e -k ssml < input` - "Walkable" speech
 
 `$ npx sre -m < input` - enriched mml
 
@@ -21,7 +21,7 @@ walkable speech is "flat" SSML with mark elements @name pointing to enrich MML n
 - attach all ssml text up until that node
 
 MEEP
-DOESN'T WORK. 
+DOESN'T WORK.
 E.g., mitternachtsformel - (in "-b") is leaf aber kein mark zeigt darauf.
 
 [we could start skipping until we find a leaf with a matching ID but let's try th reverse first]
@@ -37,12 +37,12 @@ E.g., mitternachtsformel - (in "-b") is leaf aber kein mark zeigt darauf.
     - add aria-label=s to leaf
     - reset s=''
     - continue with element after sibling
-  - else 
-    - s += element.text 
+  - else
+    - s += element.text
     - continue with next element
 
-Problems: 
+Problems:
+
 - ssml might not start (nor end) with mark
 - might have END marks
 - mark targets might need some text from before and some from after
-
