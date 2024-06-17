@@ -255,6 +255,7 @@ ssmlChildNodes.forEach(ssmlChild => {
         const isLeaf = !mmlTarget.getAttribute('data-semantic-children');
         if (currentTarget) {
             currentTarget.setAttribute('aria-label', s.join(' '));
+            currentTarget.setAttribute('tabindex', '0'); // TODO maybe do this elsewhere
             s = [];
         }
         currentTarget = isLeaf ? mmlTarget : null; // reset 
