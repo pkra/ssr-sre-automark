@@ -91,7 +91,13 @@ const mjenrich = async (texstring, displayBool) => {
 
     const mml = tex2mml(texstring, displayBool);
 
-    // DO SOMETHING WITH SRE
+
+    const cleanupAttributes = (node) => {
+        [...node.attributes].forEach((attr) => {
+            if (!attr.name.startsWith('data-')) return;
+            node.removeAttribute(attr.name);
+        });
+    };
     
     const mjx = svghtml.convert(mml, {
         em: 16,
