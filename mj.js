@@ -1,4 +1,4 @@
-import sre from 'speech-rule-engine';
+import { sreLinearizer } from './sre.js';
 
 // TeX to MathML
 import { TeX } from 'mathjax-full/mjs/input/tex.js';
@@ -91,6 +91,9 @@ const mjenrich = async (texstring, displayBool) => {
 
     const mml = tex2mml(texstring, displayBool);
 
+    // DO SOMETHING WITH SRE
+
+    const mmlNode = await sreLinearizer(mml);
 
     const cleanupAttributes = (node) => {
         [...node.attributes].forEach((attr) => {
@@ -99,7 +102,7 @@ const mjenrich = async (texstring, displayBool) => {
         });
     };
     
-    const mjx = svghtml.convert(mml, {
+    const mjx = svghtml.convert(mmlNode.outerHTML, {
         em: 16,
         ex: 8,
         containerWidth: 80 * 16,
