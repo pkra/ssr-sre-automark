@@ -53,7 +53,8 @@ const packageList = [
 ]
 
 const tex = new TeX({
-    packages: packageList
+    packages: packageList,
+    tagSide: 'left',
 });
 const html = new HTMLDocument('', liteAdaptor(), { InputJax: tex });
 const visitor = new MmlVisitor();
