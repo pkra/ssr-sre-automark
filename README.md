@@ -49,4 +49,23 @@ Problems:
 
 
 Other problems:
+
 - mathjax output might not have correct DOM order (over/under/base, tables)
+  - e.g. labeled equations (without SVG table hack for LHS, non-stretchy tags)
+  - I think I saw some issues with CSS layout (-\sigma_x^y having "- sigma" after limits) - would need confirmation
+
+examples
+
+- `x = {-b \pm \sqrt{b^2-4ac} \over 2a}.` - ok
+- `ax^2 + bx + c = 0` -- dropped `0`  (fixed)
+- `x^2 + \int_0^\infty f(y) dy = \frac{1}{2\pi i};` -- dropped trailing `;` (fixed)
+- `\begin{multline} H_l(N) = \frac{(-1)^{l-1}}{\pi } \sqrt {-\frac{z_0(1-e^{z_0})}{\rho ^2e^{z_0}}} \Bigg (\Im \left( \frac{\rho (-z_0)^{l-1/2}}{\sqrt {1-e^{z_0}}}\right)\cos (2\pi N/p)) \\ +\Re \left(\frac{\rho (-z_0)^{l-1/2}}{\sqrt {1-e^{z_0}}}\right)\sin (2\pi N /p)\Bigg ). \end{multline}` - remove \Im, \Re to avoid font crashes
+- `\begin{align} a \tag{18a}\\ b \tag{18b} \end{align}` - tags out of order; very poor result (but hack available by giving up on "stretchy SVG tags")
+
+aria
+
+- maybe add roles?
+  - role=image on nodes with label
+  - maybe presentation on everything else
+  - maybe group on svg
+
