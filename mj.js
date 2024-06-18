@@ -95,6 +95,7 @@ const svg = new SVG({
 svg.font.loadDynamicFilesSync();
 
 const svghtml = mathjax.document('', { InputJax: mml, OutputJax: svg });
+const mml2svg = async (mathstring, options) => mathjax.handleRetriesFor(() => svghtml.convert(mathstring, options));
 
 const mjenrich = async (texstring, displayBool) => {
 
@@ -111,7 +112,7 @@ const mjenrich = async (texstring, displayBool) => {
         });
     };
     
-    const mjx = svghtml.convert(mmlNode.outerHTML, {
+    const mjx = await mml2svg(mmlNode.outerHTML, {
         em: 16,
         ex: 8,
         containerWidth: 80 * 16,
