@@ -74,7 +74,7 @@ mathjax.asyncLoad = async (name) => import(name + '.js');// FIX asyncload
 
 import { MathML } from 'mathjax-full/mjs/input/mathml.js';
 import { SVG } from 'mathjax-full/mjs/output/svg.js';
-import { parseHTML, DOMParser } from 'linkedom'
+import { parseHTML } from 'linkedom'
 import { linkedomAdaptor } from 'mathjax-full/mjs/adaptors/linkedomAdaptor.js';
 import { RegisterHTMLHandler } from 'mathjax-full/mjs/handlers/html.js';
 const adaptor = linkedomAdaptor(parseHTML);
