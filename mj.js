@@ -112,7 +112,7 @@ const mjenrich = async (texstring, displayBool) => {
             node.removeAttribute(attr.name);
         });
     };
-    
+
     const mjx = await mml2svg(mmlNode.outerHTML, {
         em: 16,
         ex: 8,
