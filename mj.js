@@ -74,25 +74,14 @@ import { mathjax } from 'mathjax-full/mjs/mathjax.js';
 mathjax.asyncLoad = async (name) => import(name + '.js');// FIX asyncload
 
 import { MathML } from 'mathjax-full/mjs/input/mathml.js';
-import { SVG } from 'mathjax-full/mjs/output/svg.js';
+import {svg} from './svg.js'
 import { parseHTML } from 'linkedom'
 import { linkedomAdaptor } from 'mathjax-full/mjs/adaptors/linkedomAdaptor.js';
 import { RegisterHTMLHandler } from 'mathjax-full/mjs/handlers/html.js';
 const adaptor = linkedomAdaptor(parseHTML);
 RegisterHTMLHandler(adaptor);
 const mml = new MathML();
-import { MathJaxModernFont } from 'mathjax-modern-font/mjs/svg.js';
-const modernFont = new MathJaxModernFont({
-    dynamicPrefix: 'mathjax-modern-font/mjs/svg/dynamic'
-});
 
-const svg = new SVG({
-    fontData: modernFont,
-    displayOverflow: 'overflow',
-    linebreaks: {
-        inline: false,
-    }
-});
 
 const svghtml = mathjax.document('', { InputJax: mml, OutputJax: svg });
 const mml2svg = async (mathstring, options) => mathjax.handleRetriesFor(() => svghtml.convert(mathstring, options));
