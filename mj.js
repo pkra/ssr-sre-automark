@@ -93,7 +93,6 @@ const svg = new SVG({
         inline: false,
     }
 });
-svg.font.loadDynamicFilesSync();
 
 const svghtml = mathjax.document('', { InputJax: mml, OutputJax: svg });
 const mml2svg = async (mathstring, options) => mathjax.handleRetriesFor(() => svghtml.convert(mathstring, options));
