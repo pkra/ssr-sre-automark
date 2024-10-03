@@ -225,6 +225,41 @@ mml = `<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   </mtable>
 </math>`
 
+
+function mergeSsmlIntoMml(ssmlDom, mmlDom) {
+  let ssmlChildNodes = ssmlDom.querySelector('prosody').childNodes;
+  let s = [];
+  let currentTarget = null;
+  let lastValidTarget = null;
+  ssmlChildNodes.forEach(ssmlChild => {
+    // console.log(s)
+    if (ssmlChild.tagName === 'mark') {
+      if (ssmlChild.getAttribute('kind') === 'LAST') return;
+      const id = ssmlChild.getAttribute('name');
+      let mmlTarget = mmlDom.querySelector(`[data-semantic-id="${id}"]`);
+      const isLeaf = !mmlTarget.getAttribute('data-semantic-children');
+      if (currentTarget) {
+        currentTarget.setAttribute('aria-label', s.join(' '));
+        currentTarget.setAttribute('tabindex', '0'); // TODO maybe do this elsewhere
+        s = [];
+      }
+      currentTarget = isLeaf ? mmlTarget : null; // reset 
+      if (isLeaf) lastValidTarget = currentTarget; // for table example
+    }
+    else {
+      let text = ssmlChild.textContent.trim();
+      if (text !== '') s.push(text);
+    }
+  });
+  if (s.length > 0) {
+    const dumpee = currentTarget || lastValidTarget;
+    dumpee.setAttribute('aria-label', dumpee.getAttribute('aria-label') || '' + ' ' + s.join(' ')); //add remaining to last current Target?
+    dumpee.setAttribute('tabindex', '0');
+  }
+}
+
+
+
 export const sreLinearizer = async (mml) => {
 
 
@@ -244,37 +279,8 @@ const ssmlDom = (new DOMParser).parseFromString(ssmlString, 'text/xml');
 
 const mmlDom = (new DOMParser).parseFromString(mmlString, 'text/xml');
 
-let ssmlChildNodes = ssmlDom.querySelector('prosody').childNodes;
 
-let s = [];
-let currentTarget = null;
-let lastValidTarget = null;
-ssmlChildNodes.forEach(ssmlChild => {
-    // console.log(s)
-    if (ssmlChild.tagName === 'mark') {
-        if (ssmlChild.getAttribute('kind') === 'LAST') return
-        const id = ssmlChild.getAttribute('name');
-        let mmlTarget = mmlDom.querySelector(`[data-semantic-id="${id}"]`);
-        const isLeaf = !mmlTarget.getAttribute('data-semantic-children');
-        if (currentTarget) {
-            currentTarget.setAttribute('aria-label', s.join(' '));
-            currentTarget.setAttribute('tabindex', '0'); // TODO maybe do this elsewhere
-            s = [];
-        }
-        currentTarget = isLeaf ? mmlTarget : null; // reset 
-        if (isLeaf) lastValidTarget = currentTarget; // for table example
-    }
-    else {
-        let text = ssmlChild.textContent.trim()
-        if (text !== '') s.push(text);
-    }
-})
-if (s.length > 0) {
-    const dumpee = currentTarget || lastValidTarget;
-    dumpee.setAttribute('aria-label', dumpee.getAttribute('aria-label')||'' + ' ' + s.join(' ')) //add remaining to last current Target?
-    dumpee.setAttribute('tabindex', '0'); // TODO maybe do this elsewhere
-
-}
+mergeSsmlIntoMml(ssmlDom, mmlDom);
 
 const mmlNode = mmlDom.querySelector('math');
 
